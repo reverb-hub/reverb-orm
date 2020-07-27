@@ -5,9 +5,8 @@ export interface EntityConfig {
 }
 
 export function Entity(config?: EntityConfig): ClassDecorator {
-
   return (target: Function) => {
     Reflect.defineMetadata(ENTITY_METADATA, config, target);
     Reflect.defineMetadata(DEFINITION_TYPE.ENTITY, true, target);
-  }
+  };
 }

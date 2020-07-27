@@ -12,4 +12,4 @@ export type SCHEMA_METADATA_KEYS_TYPE =
 export const DEFINITION_TYPE = {
   ENTITY: "__entity__",
   SCHEMA: "__schema__",
-}
+};
