@@ -1,15 +1,22 @@
-import { SCHEMA_METADATA, SCHEMA_METADATA_KEYS, SCHEMA_METADATA_KEYS_TYPE, DEFINITION_TYPE } from "../common/constants.ts";
+import {
+  SCHEMA_METADATA,
+  SCHEMA_METADATA_KEYS,
+  SCHEMA_METADATA_KEYS_TYPE,
+  DEFINITION_TYPE,
+} from "../common/constants.ts";
 
 export interface Type<T> extends Function {
   new (...args: any[]): T;
 }
 
 export interface SchemaDefinition {
-  [SCHEMA_METADATA.ENTITIES]?: Type<any>[],
+  [SCHEMA_METADATA.ENTITIES]?: Type<any>[];
 }
 
 export function Schema(definition: SchemaDefinition): ClassDecorator {
-  const propsKeys = (Object.keys(definition) as unknown) as Array<keyof SchemaDefinition>;
+  const propsKeys = (Object.keys(definition) as unknown) as Array<
+    keyof SchemaDefinition
+  >;
   validateSchemaKeys(propsKeys);
 
   return (target: Function) => {
@@ -19,7 +26,7 @@ export function Schema(definition: SchemaDefinition): ClassDecorator {
         Reflect.defineMetadata(property, (definition as any)[property], target);
       }
     }
-  }
+  };
 }
 
 export const INVALID_SCHEMA_DEFINITION_MESSAGE = (
